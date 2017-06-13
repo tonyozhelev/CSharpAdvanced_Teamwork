@@ -2,7 +2,7 @@
 
 TODO:
 ```diff
-++Make GitHub Project
-++Add Members
---Create Actual Project
++Make GitHub Project
++Add Members
+-Create Actual Project
 ```
