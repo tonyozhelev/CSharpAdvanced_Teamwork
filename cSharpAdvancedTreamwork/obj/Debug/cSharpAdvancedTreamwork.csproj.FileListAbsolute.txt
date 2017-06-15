@@ -1,2 +1,7 @@
 C:\SoftUniC#Adv\cSharpAdvancedTreamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
 C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
+C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe
+C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.pdb
+C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache
+C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
+C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb
