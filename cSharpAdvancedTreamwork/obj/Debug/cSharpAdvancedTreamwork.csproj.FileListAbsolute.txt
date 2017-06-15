@@ -1,0 +1,2 @@
+C:\SoftUniC#Adv\cSharpAdvancedTreamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
+C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
