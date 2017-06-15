@@ -9,9 +9,9 @@ Project Preparation:
 
 Project TODO:
 ```diff
--Create ship visual
++Create ship visual
 -Create enemy ship visual
--Create movement
++Create movement
 -Create enemy spawn sequence
 -Create bullets
 -Make stuff happen when bullets hit
