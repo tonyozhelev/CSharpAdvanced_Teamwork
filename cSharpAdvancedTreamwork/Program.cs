@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using cSharpAdvancedTreamwork.Conts;
 
 namespace cSharpAdvancedTreamwork
 {
@@ -14,7 +15,7 @@ namespace cSharpAdvancedTreamwork
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             ConsoleKeyInfo KeyInfo;
             Console.CursorVisible = false;
-            Console.SetWindowSize(110, 51);
+            Console.SetWindowSize(Constants.ConsoleWindowWidth, Constants.ConsoleWindowHeight);
             var lives = 3;
             var UI = new UIfunctions();
 
@@ -27,13 +28,13 @@ namespace cSharpAdvancedTreamwork
             var enemy = new Enemies();
 
             int redo = 0;
-            ship.DrawShip();
+           ship.DrawShip();
             
             do
             {
                 enemy.DrawShip();
                 KeyInfo = Console.ReadKey(true);
-                ship.MoveShip(KeyInfo, ship, ship.pos);
+                ship.MoveShip(KeyInfo, ship, ref ship.position);
 
             } while (redo == 0);
             

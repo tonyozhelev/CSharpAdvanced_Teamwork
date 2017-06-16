@@ -5,3 +5,9 @@ C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\bin\Debug\cShar
 C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache
 C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
 C:\SoftUniC#Adv\cSharpAdvanced_Treamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.pdb
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using cSharpAdvancedTreamwork.Conts;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
@@ -10,27 +11,27 @@ namespace cSharpAdvancedTreamwork.Bodies
     {
         public void DrawFrame(int numLives, int score)
         {
-            Console.WriteLine('\u2554' + new String('\u2550',108) + '\u2557');
-            for (int i = 0; i < 46; i++)
+            Console.WriteLine('\u2554' + new String('\u2550',Constants.PlayBoxWidth) + '\u2557');
+            for (int i = 0; i < Constants.PlayBoxHeight; i++)
             {
-                Console.WriteLine('\u2551' + new String(' ', 108) + '\u2551');
+                Console.WriteLine('\u2551' + new String(' ', Constants.PlayBoxWidth) + '\u2551');
             }
             
-            Console.WriteLine('\u2560' + new String('\u2550', 108) + '\u2563');
+            Console.WriteLine('\u2560' + new String('\u2550', Constants.PlayBoxWidth) + '\u2563');
             Console.WriteLine('\u2551' + "       " + string.Format("Lives: " + new string('\u2665', numLives)).PadRight(16) + 
                 '\u2551' + new String('#', 55) + '\u2551' + "   " + string.Format("Score: {0:d15}" , score).PadRight(25) + '\u2551');
-            Console.WriteLine('\u255A' + new String('\u2550', 108) + '\u255D');
+            Console.WriteLine('\u255A' + new String('\u2550', Constants.PlayBoxWidth) + '\u255D');
         }
 
         public void DrawStartScreen()
         {
-            Console.WriteLine('\u2554' + new String('\u2550',108) + '\u2557');
+            Console.WriteLine('\u2554' + new String('\u2550',Constants.PlayBoxWidth) + '\u2557');
             for (int i = 0; i < 48; i++)
             {
-                Console.WriteLine('\u2551' + new String(' ', 108) + '\u2551');
+                Console.WriteLine('\u2551' + new String(' ', Constants.PlayBoxWidth) + '\u2551');
             }
             
-            Console.WriteLine('\u255A' + new String('\u2550', 108) + '\u255D');
+            Console.WriteLine('\u255A' + new String('\u2550', Constants.PlayBoxWidth) + '\u255D');
 
             Console.SetCursorPosition(28, 9);
             Console.Write("   _____ ____  ___   _________________ __  __________ ");
