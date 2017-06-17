@@ -27,13 +27,13 @@ namespace cSharpAdvancedTreamwork
             UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
 
             var ship = new MainShip();
-            var enemy = new Enemies();
             //Kakvo e tova po dqvolite :D
 
             int redo = 0;
             ship.DrawShip();
-
-           
+            
+            Thread t=new Thread(()=>ship.SpawnEnemiyShips());
+            t.Start();
 
             do
             {
@@ -41,11 +41,16 @@ namespace cSharpAdvancedTreamwork
                 while (!Console.KeyAvailable)
                 {
                     ship.UpdateBullets();
+                    ship.UpdateEnemies();
                     Thread.Sleep(50);
+                    
+                    
                 }
                 KeyInfo = Console.ReadKey(true);
                 ship.MoveShip(KeyInfo, ship, ref ship.position);
                 ship.UpdateBullets();
+                ship.UpdateEnemies();
+
             } while (redo==0);
 
 
@@ -54,11 +59,7 @@ namespace cSharpAdvancedTreamwork
         }
     
 
-    public static void Move(MainShip ship)
-        {
-           
-           
-        }
+   
        
     }
 }

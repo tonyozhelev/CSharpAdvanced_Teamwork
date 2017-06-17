@@ -14,7 +14,7 @@ namespace cSharpAdvancedTreamwork.Conts
        public const int MainShipHeight = 3;
        public const int MainShipSpawnPositionX = 48;
        public const int MainShipSpawnPositionY = 35;
-       public const int MainShipSpeedX = 5;
+       public const int MainShipSpeedX = 3;
        public const int MainShipSpeedY = 2;
         public static readonly string[] ShipPicture = new string [] {  "  /|\\  ", " ||||| ", "\\<<.>>/"};
     //PlayBox

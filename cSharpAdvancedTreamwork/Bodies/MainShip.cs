@@ -27,10 +27,12 @@ namespace cSharpAdvancedTreamwork.Bodies
         {
             PlayerShip = Constants.ShipPicture;
             Bullets = new List<Bullet>();
+            EnemyShips = new List<Enemies>();
         }
 
         public List<Bullet> Bullets { get; set; }
-    
+        public List<Enemies> EnemyShips { get; set; }
+
         public string[] PlayerShip { get; set; }
 
         public Coordinates position =
@@ -84,7 +86,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                     ship.DrawShip();
                     break;
                 case ConsoleKey.UpArrow:
-                    if (coords.y -1> Constants.FrameWidth)
+                    if (coords.y - 1 > Constants.FrameWidth)
                     {
                         if (coords.y - Constants.MainShipSpeedY > Constants.FrameWidth)
                             coords.y -= Constants.MainShipSpeedY;
@@ -94,7 +96,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
                     break;
                 case ConsoleKey.DownArrow:
-                    if (coords.y  < Constants.PlayBoxHeight - Constants.MainShipHeight)
+                    if (coords.y < Constants.PlayBoxHeight - Constants.MainShipHeight)
                     {
                         if (coords.y + Constants.MainShipSpeedY <= Constants.PlayBoxHeight - Constants.MainShipHeight)
                             coords.y += Constants.MainShipSpeedY;
@@ -103,48 +105,140 @@ namespace cSharpAdvancedTreamwork.Bodies
                     ship.DrawShip();
                     break;
 
-                    case ConsoleKey.Spacebar:
-                    Bullets.Add(new Bullet(ship.position.x+3,ship.position.y));
+                case ConsoleKey.Spacebar:
+                    Bullets.Add(new Bullet(ship.position.x + 3, ship.position.y - 1));
                     Console.WriteLine(Bullets.Count);
                     DrawShip();
-                    
-                  
-                       
+
+
                     break;
+            }
+        }
+
+        public void SpawnEnemiyShips()
+        {
+            while (true)
+            {
+                var enemy = new Enemies();
+                EnemyShips.Add(enemy);
+                Thread.Sleep(6000);
+            }
+        }
+
+        public void CheckForDeadEnemiesAndDelete(Bullet bullet)
+        {
+            var deleted=new List<Enemies>();
+            var ships = EnemyShips;
+            for  (int i =0;i<EnemyShips.Count; i++)
+            {
+                var x = EnemyShips[i].Position.x;
+                var y = EnemyShips[i].Position.y;
+                if (bullet.x >= x && bullet.x < x + 7 && bullet.y >= y && bullet.y < y + 3)
+                {
+                        deleted.Add(EnemyShips[i]);
+                }
+            }
+            foreach (var e in deleted)
+            {
+                EnemyShips.Remove(e);
+
+            }
+            UpdateEnemies();
+        }
+
+        
+
+        public void UpdateEnemies()
+        {
+           
+            foreach (var e in EnemyShips)
+            {
+                e.DrawShip();
             }
         }
 
         public void UpdateBullets()
         {
-              
-                foreach (Bullet bul in Bullets)
+            var Removed = new List<Bullet>();
+            foreach (Bullet bul in Bullets)
+            {
+                if (bul.y > 1)
                 {
-                    if (bul.y > 2)
+                    int prev = bul.y;
+                    bul.y--;
+                    var c = ReadCharacterAt(bul.x, bul.y);
+                    if (c != ' ')
                     {
-                        int prev = bul.y;
-                        bul.y--;
+
+                        
+                        Removed.Add(bul);
+                        CheckForDeadEnemiesAndDelete(bul);
+                        UpdateEnemies();
+                        
+                    }
+                    else
+                    {
                         Console.SetCursorPosition(bul.x, bul.y);
                         Console.WriteLine('*');
                         Console.SetCursorPosition(bul.x, prev);
                         Console.WriteLine(' ');
-                    
                     }
-
                 }
-            
-            
-
+            }
+            foreach (var bulet in Removed)
+            {
+                Bullets.Remove(bulet);
+            }
         }
-        public void DeleteStar(int x,int y)
+
+        public static char? ReadCharacterAt(int x, int y)
+        {
+            IntPtr consoleHandle = GetStdHandle(-11);
+            if (consoleHandle == IntPtr.Zero)
+            {
+                return null;
+            }
+            Coord position = new Coord
+            {
+                X = (short) x,
+                Y = (short) y
+            };
+            StringBuilder result = new StringBuilder(1);
+            uint read = 0;
+            if (ReadConsoleOutputCharacter(consoleHandle, result, 1, position, out read))
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern IntPtr GetStdHandle(int nStdHandle);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool ReadConsoleOutputCharacter(IntPtr hConsoleOutput, [Out] StringBuilder lpCharacter,
+            uint length, Coord bufferCoord, out uint lpNumberOfCharactersRead);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Coord
+        {
+            public short X;
+            public short Y;
+        }
+
+        public void DeleteStar(int x, int y)
         {
             Console.SetCursorPosition(x, y);
             Console.WriteLine(' ');
         }
-        public void DrawStar(int x,int y)
+
+        public void DrawStar(int x, int y)
         {
-            Console.SetCursorPosition(x,y);
+            Console.SetCursorPosition(x, y);
             Console.WriteLine('*');
         }
-      
     }
 }
