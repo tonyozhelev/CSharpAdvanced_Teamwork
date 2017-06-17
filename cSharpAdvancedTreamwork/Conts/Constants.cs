@@ -10,12 +10,13 @@ namespace cSharpAdvancedTreamwork.Conts
    public static class Constants
    {
         //Main ship
-       public const int MainShipWidth = 12;
-       public const int MainShipHeight = 6;
+       public const int MainShipWidth = 7;
+       public const int MainShipHeight = 3;
        public const int MainShipSpawnPositionX = 48;
        public const int MainShipSpawnPositionY = 35;
-
-        public static readonly string[] ShipPicture = new string [] { "     __     ", "   ///\\\\\\   ", "    ||||    ", "II  ||||  II", "I\\\\\\<<>>///I", "II   ^^   II" };
+       public const int MainShipSpeedX = 5;
+       public const int MainShipSpeedY = 2;
+        public static readonly string[] ShipPicture = new string [] {  "  /|\\  ", " ||||| ", "\\<<.>>/"};
     //PlayBox
     public const int PlayBoxWidth = 108;
        public const int PlayBoxHeight = 46;
@@ -31,6 +32,9 @@ namespace cSharpAdvancedTreamwork.Conts
 //       public const char HorizontalBorder = '\u2550';
 //       public const char VerticalBorder = '\u2551';
 
+        //Others
+       public const int StartingScore = 0;
+       public const int StartingLives = 3;
 
     }
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bodies\Bullet.cs" />
     <Compile Include="Bodies\Enemies.cs" />
     <Compile Include="Bodies\MainShip.cs" />
     <Compile Include="Bodies\UIfunctions.cs" />
