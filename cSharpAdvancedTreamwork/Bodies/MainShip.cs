@@ -22,10 +22,10 @@ namespace cSharpAdvancedTreamwork.Bodies
         }
         public MainShip()
         {
-            PlayerShip = new string[] { "     __     ", "   ///\\\\\\   ", "    ||||    ", "II  ||||  II", "I\\\\\\<<>>///I", "II   ^^   II" };
+            PlayerShip = Constants.ShipPicture;
         }
         public string[] PlayerShip { get; set; }
-        public Coordinates position = new Coordinates(55, 30);
+        public Coordinates position = new Coordinates(Constants.MainShipSpawnPositionX, Constants.MainShipSpawnPositionY);
         public void DrawShip()
         {
             Coordinates coords = new Coordinates(this.position.x, this.position.y);

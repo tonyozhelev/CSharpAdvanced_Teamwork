@@ -55,7 +55,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             Console.SetCursorPosition(28, 20);
             Console.Write("   /____/_/ /_/\\____/\\____/ /_/ /_____/_/ |_| ");
 
-            Console.SetCursorPosition(40, 25);
+            Console.SetCursorPosition(43, 25);
             Console.Write("Press any key to play");
 
             var ship = new MainShip();

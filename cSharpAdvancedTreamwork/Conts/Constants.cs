@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +12,12 @@ namespace cSharpAdvancedTreamwork.Conts
         //Main ship
        public const int MainShipWidth = 12;
        public const int MainShipHeight = 6;
-        //PlayBox
-       public const int PlayBoxWidth = 108;
+       public const int MainShipSpawnPositionX = 48;
+       public const int MainShipSpawnPositionY = 35;
+
+        public static readonly string[] ShipPicture = new string [] { "     __     ", "   ///\\\\\\   ", "    ||||    ", "II  ||||  II", "I\\\\\\<<>>///I", "II   ^^   II" };
+    //PlayBox
+    public const int PlayBoxWidth = 108;
        public const int PlayBoxHeight = 46;
         // Console window size
        public const int ConsoleWindowWidth = 110;
