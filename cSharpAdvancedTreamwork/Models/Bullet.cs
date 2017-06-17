@@ -19,6 +19,10 @@ namespace cSharpAdvancedTreamwork.Bodies
             this.y = y;
             this.speed = 2;
         }
-
+        public void DeleteBullet()
+        {
+            Console.SetCursorPosition(x, y+1);
+            Console.WriteLine(' ');
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 {
     public class MainShip
     {
+        private int lifes;
         public struct Coordinates
         {
             public int x;
@@ -27,11 +28,12 @@ namespace cSharpAdvancedTreamwork.Bodies
         {
             PlayerShip = Constants.ShipPicture;
             Bullets = new List<Bullet>();
-            EnemyShips = new List<Enemies>();
+            EnemyShips = new List<Enemy>();
+            this.lifes = Lifes;
         }
-
+        public int Lifes { get; set; }
         public List<Bullet> Bullets { get; set; }
-        public List<Enemies> EnemyShips { get; set; }
+        public List<Enemy> EnemyShips { get; set; }
 
         public string[] PlayerShip { get; set; }
 
@@ -110,7 +112,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                     Console.WriteLine(Bullets.Count);
                     DrawShip();
 
-
+                    
                     break;
             }
         }
@@ -119,7 +121,7 @@ namespace cSharpAdvancedTreamwork.Bodies
         {
             while (true)
             {
-                var enemy = new Enemies();
+                var enemy = new Enemy();
                 EnemyShips.Add(enemy);
                 Thread.Sleep(6000);
             }
@@ -127,20 +129,23 @@ namespace cSharpAdvancedTreamwork.Bodies
 
         public void CheckForDeadEnemiesAndDelete(Bullet bullet)
         {
-            var deleted=new List<Enemies>();
+            var deleted=new List<Enemy>();
             var ships = EnemyShips;
-            for  (int i =0;i<EnemyShips.Count; i++)
+            for(int i =0;i<EnemyShips.Count; i++)
             {
                 var x = EnemyShips[i].Position.x;
                 var y = EnemyShips[i].Position.y;
                 if (bullet.x >= x && bullet.x < x + 7 && bullet.y >= y && bullet.y < y + 3)
                 {
-                        deleted.Add(EnemyShips[i]);
+                    deleted.Add(EnemyShips[i]);
                 }
+
+
             }
             foreach (var e in deleted)
             {
                 EnemyShips.Remove(e);
+                e.DeleteShip();
 
             }
             UpdateEnemies();
@@ -150,28 +155,33 @@ namespace cSharpAdvancedTreamwork.Bodies
 
         public void UpdateEnemies()
         {
-           
             foreach (var e in EnemyShips)
             {
                 e.DrawShip();
             }
         }
 
+        public void MoveEnemies()
+        {
+            foreach (var e in EnemyShips)
+            {
+                e.Move();
+            }
+        }
+
         public void UpdateBullets()
         {
-            var Removed = new List<Bullet>();
+            var removed = new List<Bullet>();
             foreach (Bullet bul in Bullets)
             {
-                if (bul.y > 1)
+                if (bul.y >= 1)
                 {
                     int prev = bul.y;
                     bul.y--;
                     var c = ReadCharacterAt(bul.x, bul.y);
                     if (c != ' ')
                     {
-
-                        
-                        Removed.Add(bul);
+                        removed.Add(bul);
                         CheckForDeadEnemiesAndDelete(bul);
                         UpdateEnemies();
                         
@@ -185,8 +195,9 @@ namespace cSharpAdvancedTreamwork.Bodies
                     }
                 }
             }
-            foreach (var bulet in Removed)
+            foreach (var bulet in removed)
             {
+                bulet.DeleteBullet();
                 Bullets.Remove(bulet);
             }
         }

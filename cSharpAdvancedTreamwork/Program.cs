@@ -27,6 +27,7 @@ namespace cSharpAdvancedTreamwork
             UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
 
             var ship = new MainShip();
+            ship.Lifes = Constants.StartingLives;
             //Kakvo e tova po dqvolite :D
 
             int redo = 0;
@@ -42,14 +43,13 @@ namespace cSharpAdvancedTreamwork
                 {
                     ship.UpdateBullets();
                     ship.UpdateEnemies();
-                    Thread.Sleep(50);
-                    
-                    
+                    Thread.Sleep(50);  
                 }
                 KeyInfo = Console.ReadKey(true);
                 ship.MoveShip(KeyInfo, ship, ref ship.position);
                 ship.UpdateBullets();
                 ship.UpdateEnemies();
+                
 
             } while (redo==0);
 

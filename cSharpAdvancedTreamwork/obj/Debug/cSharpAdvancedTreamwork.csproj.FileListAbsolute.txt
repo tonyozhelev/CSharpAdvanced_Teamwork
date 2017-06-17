@@ -11,3 +11,9 @@ D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvanc
 D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache
 D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
 D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Jenny\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
+C:\Users\Jenny\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe
+C:\Users\Jenny\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Jenny\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache
+C:\Users\Jenny\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
+C:\Users\Jenny\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb

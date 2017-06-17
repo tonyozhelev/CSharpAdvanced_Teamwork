@@ -59,6 +59,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             Console.Write("Press any key to play");
 
             var ship = new MainShip();
+            ship.Lifes = Constants.StartingLives;
             ship.DrawShip();
         }
     }
