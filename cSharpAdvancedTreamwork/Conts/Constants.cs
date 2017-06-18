@@ -10,13 +10,13 @@ namespace cSharpAdvancedTreamwork.Conts
     public static class Constants
     {
         //Main ship
-        public const int MainShipWidth = 7;
-        public const int MainShipHeight = 3;
+        public const int MainShipWidth = 1;
+        public const int MainShipHeight = 1;
         public const int MainShipSpawnPositionX = 48;
         public const int MainShipSpawnPositionY = 35;
-        public const int MainShipSpeedX = 3;
-        public const int MainShipSpeedY = 2;
-        public static readonly string[] ShipPicture = new string[] { "  /|\\  ", " ||||| ", "\\<<.>>/" };
+        public const int MainShipSpeedX = 1;
+        public const int MainShipSpeedY = 1;
+        public static readonly char ShipPicture = '@';// new string[] { "  /|\\  ", " ||||| ", "\\<<.>>/" };
         //PlayBox
         public const int PlayBoxWidth = 108;
         public const int PlayBoxHeight = 47;

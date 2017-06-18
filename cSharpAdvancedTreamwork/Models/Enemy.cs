@@ -24,7 +24,8 @@ namespace cSharpAdvancedTreamwork.Bodies
         }
         public Enemy()
         {
-            shipEnemy = new string[] { "(|) (|)", "<<|||>>", "   V   ", };
+            //shipEnemy = new string[] { "(|) (|)", "<<|||>>", "   V   ", };
+            shipEnemy = 'V';
             var rnd = new Random();
             var x = rnd.Next(2, Constants.PlayBoxWidth - 8);
             var y = 2;
@@ -35,36 +36,29 @@ namespace cSharpAdvancedTreamwork.Bodies
         }
         public int Lifes { get; set; }
         public Coordinates Position;
-        public string[] shipEnemy { get; set; }
+        public char shipEnemy { get; set; }
         public void DrawShip()
         {
-            Coordinates coordinates = this.Position;
-            foreach (var line in shipEnemy)
-            {
-                Console.SetCursorPosition(coordinates.x, coordinates.y);
-                Console.WriteLine(line);
-                coordinates.y++;
-            }
+            Console.SetCursorPosition(Coords.x, Coords.y);
+            Console.WriteLine(shipEnemy);
         }
+
         public void DeleteShip()
         {
-             Console.SetCursorPosition(Coords.x, Coords.y);
+            Console.SetCursorPosition(Coords.x, Coords.y);
             string line = " ";
             Console.WriteLine(line);
-            Console.WriteLine(' ');
         }
         public void Move()
         {
-            this.Position.y += 1;
-            Coordinates coordinates = this.Position;
-            
-            foreach (var line in shipEnemy)
-            {
-                Console.SetCursorPosition(coordinates.x, coordinates.y);
-                Console.WriteLine(line);
-                coordinates.y++;
-            }
+            //this.Position.y += 1;
+            //Coordinates coordinates = this.Position;
+
+            //Console.SetCursorPosition(coordinates.x, coordinates.y);
+            //Console.WriteLine(shipEnemy);
+
         }
+
 
     }
 }

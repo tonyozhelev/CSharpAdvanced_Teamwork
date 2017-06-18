@@ -35,7 +35,7 @@ namespace cSharpAdvancedTreamwork.Bodies
         public List<Bullet> Bullets { get; set; }
         public List<Enemy> EnemyShips { get; set; }
 
-        public string[] PlayerShip { get; set; }
+        public char PlayerShip { get; set; }
 
         public Coordinates position =
             new Coordinates(Constants.MainShipSpawnPositionX, Constants.MainShipSpawnPositionY);
@@ -44,12 +44,10 @@ namespace cSharpAdvancedTreamwork.Bodies
         {
             Coordinates coords = new Coordinates(this.position.x, this.position.y);
 
-            foreach (var line in PlayerShip)
-            {
-                Console.SetCursorPosition(coords.x, coords.y);
-                Console.WriteLine("{0}", line);
-                coords.y++;
-            }
+            Console.SetCursorPosition(coords.x, coords.y);
+            Console.WriteLine("{0}", PlayerShip);
+            coords.y++;
+
         }
 
         public void DeleteShip()
@@ -108,11 +106,11 @@ namespace cSharpAdvancedTreamwork.Bodies
                     break;
 
                 case ConsoleKey.Spacebar:
-                    Bullets.Add(new Bullet(ship.position.x + 3, ship.position.y - 1));
+                    Bullets.Add(new Bullet(ship.position.x, ship.position.y - 1));
                     Console.WriteLine(Bullets.Count);
                     DrawShip();
 
-                    
+
                     break;
             }
         }
@@ -123,15 +121,16 @@ namespace cSharpAdvancedTreamwork.Bodies
             {
                 var enemy = new Enemy();
                 EnemyShips.Add(enemy);
-                Thread.Sleep(6000);
+                Thread.Sleep(3000);
+                EnemyShoot();
             }
         }
 
         public void CheckForDeadEnemiesAndDelete(Bullet bullet)
         {
-            var deleted=new List<Enemy>();
+            var deleted = new List<Enemy>();
             var ships = EnemyShips;
-            for(int i =0;i<EnemyShips.Count; i++)
+            for (int i = 0; i < EnemyShips.Count; i++)
             {
                 var x = EnemyShips[i].Position.x;
                 var y = EnemyShips[i].Position.y;
@@ -151,8 +150,17 @@ namespace cSharpAdvancedTreamwork.Bodies
             UpdateEnemies();
         }
 
-        
 
+        public void EnemyShoot()
+        {
+            foreach (var ship in EnemyShips)
+            {
+                Bullet bullet = new Bullet(ship.Position.x, ship.Position.y);
+                bullet.isEnemy = true;
+                Bullets.Add(bullet);
+            }
+
+        }
         public void UpdateEnemies()
         {
             foreach (var e in EnemyShips)
@@ -177,21 +185,22 @@ namespace cSharpAdvancedTreamwork.Bodies
                 if (bul.y >= 1)
                 {
                     int prev = bul.y;
-                    bul.y--;
+                    bul.y = bul.isEnemy ? bul.y+2 : bul.y-1;
                     var c = ReadCharacterAt(bul.x, bul.y);
-                    if (c != ' ')
+                    if (c != ' '&& c!='*')
                     {
                         removed.Add(bul);
                         CheckForDeadEnemiesAndDelete(bul);
                         UpdateEnemies();
-                        
                     }
                     else
                     {
+                        Console.ForegroundColor =bul.isEnemy ? ConsoleColor.Red : ConsoleColor.White;
                         Console.SetCursorPosition(bul.x, bul.y);
                         Console.WriteLine('*');
                         Console.SetCursorPosition(bul.x, prev);
                         Console.WriteLine(' ');
+                        Console.ResetColor();
                     }
                 }
             }
@@ -211,14 +220,22 @@ namespace cSharpAdvancedTreamwork.Bodies
             }
             Coord position = new Coord
             {
-                X = (short) x,
-                Y = (short) y
+                X = (short)x,
+                Y = (short)y
             };
             StringBuilder result = new StringBuilder(1);
             uint read = 0;
             if (ReadConsoleOutputCharacter(consoleHandle, result, 1, position, out read))
             {
-                return result[0];
+                try
+                {
+                    return result[0];
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+
             }
             else
             {

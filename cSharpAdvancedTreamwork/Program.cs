@@ -28,7 +28,7 @@ namespace cSharpAdvancedTreamwork
 
             var ship = new MainShip();
             ship.Lifes = Constants.StartingLives;
-            //Kakvo e tova po dqvolite :D
+            //Kakvo e tova po dqvolite :D #magiq
 
             int redo = 0;
             ship.DrawShip();

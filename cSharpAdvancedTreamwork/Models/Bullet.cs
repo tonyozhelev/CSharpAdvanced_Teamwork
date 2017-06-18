@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
-   public class Bullet
-   {
-       public int x { get; set; }
-       public int y { get; set; }
-       public int speed { get; set; }
-
+    public class Bullet
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+        public int speed { get; set; }
+        public bool isEnemy { get; set; }
         public Bullet(int x, int y)
         {
             this.x = x;
@@ -21,7 +21,7 @@ namespace cSharpAdvancedTreamwork.Bodies
         }
         public void DeleteBullet()
         {
-            Console.SetCursorPosition(x, y+1);
+            Console.SetCursorPosition(x, y + 1);
             Console.WriteLine(' ');
         }
     }
