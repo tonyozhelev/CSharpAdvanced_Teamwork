@@ -41,7 +41,7 @@ namespace cSharpAdvancedTreamwork
                 while (!Console.KeyAvailable)
                 {
                     ship.UpdateBullets();
-                    ship.UpdateEnemies();
+                  //  ship.UpdateEnemies();
                     Thread.Sleep(50);
                     
                     

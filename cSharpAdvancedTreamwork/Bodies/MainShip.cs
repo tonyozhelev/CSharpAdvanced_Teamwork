@@ -125,25 +125,34 @@ namespace cSharpAdvancedTreamwork.Bodies
             }
         }
 
-        public void CheckForDeadEnemiesAndDelete(Bullet bullet)
+        public void CheckForDeadEnemiesAndDelete(int x,int y)
         {
             var deleted=new List<Enemies>();
             var ships = EnemyShips;
             for  (int i =0;i<EnemyShips.Count; i++)
             {
-                var x = EnemyShips[i].Position.x;
-                var y = EnemyShips[i].Position.y;
-                if (bullet.x >= x && bullet.x < x + 7 && bullet.y >= y && bullet.y < y + 3)
+                
+                if (x>=EnemyShips[i].Position.x && x<=EnemyShips[i].Position.x+7 && y< EnemyShips[i].Position.y+3 && y> EnemyShips[i].Position.y)
                 {
-                        deleted.Add(EnemyShips[i]);
+
+                   deleted.Add(EnemyShips[i]);
+                    
                 }
+                
             }
             foreach (var e in deleted)
             {
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.SetCursorPosition(e.Position.x,e.Position.y+i);
+                    
+                    Console.WriteLine(new String(' ',7));
+                }
                 EnemyShips.Remove(e);
 
+
             }
-            UpdateEnemies();
+            
         }
 
         
@@ -151,17 +160,18 @@ namespace cSharpAdvancedTreamwork.Bodies
         public void UpdateEnemies()
         {
            
-            foreach (var e in EnemyShips)
+            for (int i=0; i<EnemyShips.Count;i++)
             {
-                e.DrawShip();
+                EnemyShips[i].DrawShip();
             }
         }
 
         public void UpdateBullets()
         {
             var Removed = new List<Bullet>();
-            foreach (Bullet bul in Bullets)
+            for (int i=0; i<Bullets.Count;i++)
             {
+                var bul = Bullets[i];
                 if (bul.y > 1)
                 {
                     int prev = bul.y;
@@ -172,7 +182,8 @@ namespace cSharpAdvancedTreamwork.Bodies
 
                         
                         Removed.Add(bul);
-                        CheckForDeadEnemiesAndDelete(bul);
+                        
+                       CheckForDeadEnemiesAndDelete(bul.x,bul.y);
                         UpdateEnemies();
                         
                     }
@@ -184,10 +195,18 @@ namespace cSharpAdvancedTreamwork.Bodies
                         Console.WriteLine(' ');
                     }
                 }
+                else
+                {
+                    Bullets.Remove(bul);
+                    Console.SetCursorPosition(bul.x, bul.y);
+                    Console.WriteLine(' ');
+                    Console.WriteLine(Bullets.Count);
+                }
             }
             foreach (var bulet in Removed)
             {
                 Bullets.Remove(bulet);
+                UpdateBullets();
             }
         }
 
