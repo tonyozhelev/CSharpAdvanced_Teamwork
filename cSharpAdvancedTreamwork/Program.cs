@@ -22,7 +22,7 @@ namespace cSharpAdvancedTreamwork
             var UI = new UIfunctions();
 
             UI.DrawStartScreen();
-            Console.ReadLine();
+            Console.ReadKey();
             Console.Clear();
             UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
 
@@ -34,17 +34,20 @@ namespace cSharpAdvancedTreamwork
             
             Thread t=new Thread(()=>ship.SpawnEnemiyShips());
             t.Start();
-
+            Thread moveEnemy = new Thread(() => Enemies.MoveEnemies(ship.EnemyShips));
+           moveEnemy.Start();
+            
             do
             {
                 ConsoleKeyInfo KeyInfo;
                 while (!Console.KeyAvailable)
                 {
                     ship.UpdateBullets();
-                  //  ship.UpdateEnemies();
+                    ship.UpdateEnemies();
                     Thread.Sleep(50);
                     
-                    
+
+
                 }
                 KeyInfo = Console.ReadKey(true);
                 ship.MoveShip(KeyInfo, ship, ref ship.position);

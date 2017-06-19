@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using cSharpAdvancedTreamwork.Conts;
 
@@ -22,9 +24,9 @@ namespace cSharpAdvancedTreamwork.Bodies
         }
         public Enemies()
         {
-            shipEnemy = new string[] { "(|) (|)", "<<|||>>", "   V   ", };
+            shipEnemy = Constants.EnemyShipPicture;
             var rnd=new Random();
-            var x = rnd.Next(2, Constants.PlayBoxWidth - 8);
+            var x = rnd.Next(2, Constants.PlayBoxWidth - Constants.EnemyShipWidth-1);
             var y =2;
             Position.x = x;
             Position.y = y;
@@ -43,6 +45,39 @@ namespace cSharpAdvancedTreamwork.Bodies
                 Console.WriteLine(line);
                 coordinates.y++;
             }
+        }
+
+        public bool CanBeSpawned(List<Enemies> enemies)
+        {
+            
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                var e = enemies[i];
+                if (!((this.Position.x + Constants.EnemyShipWidth <= e.Position.x ||
+                     this.Position.x >= e.Position.x + Constants.EnemyShipWidth) &&
+                    (this.Position.y + Constants.EnemyShipHeight <= e.Position.y)))
+                {
+                    return false;
+                }
+                
+            }
+            return true;
+        }
+        public static void MoveEnemies(List<Enemies>e)
+        {
+            while (true)
+            {
+                for (int i = 0; i < e.Count; i++)
+                {
+                    Console.SetCursorPosition(e[i].Position.x, e[i].Position.y);
+                    Console.WriteLine(new String(' ', 7));
+                    e[i].Position.y++;
+                    e[i].DrawShip();
+                }
+                
+                Thread.Sleep(300);
+            }
+            
         }
     }
 }

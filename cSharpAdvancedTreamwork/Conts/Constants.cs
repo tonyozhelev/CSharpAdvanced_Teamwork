@@ -17,8 +17,13 @@ namespace cSharpAdvancedTreamwork.Conts
        public const int MainShipSpeedX = 3;
        public const int MainShipSpeedY = 2;
         public static readonly string[] ShipPicture = new string [] {  "  /|\\  ", " ||||| ", "\\<<.>>/"};
-    //PlayBox
-    public const int PlayBoxWidth = 108;
+        //EnemyShip
+       public const int EnemyShipWidth = 7;
+       public const int EnemyShipHeight = 3;
+       public static readonly string[] EnemyShipPicture = new string[] { "(|) (|)", "<<|||>>", "   V   ", };
+
+        //PlayBox
+        public const int PlayBoxWidth = 108;
        public const int PlayBoxHeight = 46;
         // Console window size
        public const int ConsoleWindowWidth = 110;
