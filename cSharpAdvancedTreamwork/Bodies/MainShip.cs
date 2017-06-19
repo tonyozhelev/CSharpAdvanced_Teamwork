@@ -127,7 +127,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
         public void CheckForDeadEnemiesAndDelete(int x,int y)
         {
-            var deleted=new List<Enemies>();
+            var toBeDeleted=new List<Enemies>();
             var ships = EnemyShips;
             for  (int i =0;i<EnemyShips.Count; i++)
             {
@@ -135,27 +135,31 @@ namespace cSharpAdvancedTreamwork.Bodies
                 if (x>=EnemyShips[i].Position.x && x<=EnemyShips[i].Position.x+7 && y< EnemyShips[i].Position.y+3 && y> EnemyShips[i].Position.y)
                 {
 
-                   deleted.Add(EnemyShips[i]);
+                    toBeDeleted.Add(EnemyShips[i]);
                     
                 }
                 
             }
+            DeleteEnemies(toBeDeleted);
+
+        }
+
+        public void DeleteEnemies(List<Enemies> deleted)
+        {
             foreach (var e in deleted)
             {
+                
                 for (int i = 0; i < 3; i++)
                 {
-                    Console.SetCursorPosition(e.Position.x,e.Position.y+i);
-                    
-                    Console.WriteLine(new String(' ',7));
+                    Console.SetCursorPosition(e.Position.x, e.Position.y + i);
+
+                    Console.WriteLine(new String(' ', 7));
                 }
                 EnemyShips.Remove(e);
 
 
             }
-            
         }
-
-        
 
         public void UpdateEnemies()
         {
