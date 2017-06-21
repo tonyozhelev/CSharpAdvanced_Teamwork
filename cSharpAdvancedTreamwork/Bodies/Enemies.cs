@@ -63,8 +63,9 @@ namespace cSharpAdvancedTreamwork.Bodies
             }
             return true;
         }
-        public static void MoveEnemies(List<Enemies> e)
+        public static void MoveEnemies(List<Enemies> e,ref int missed,ref bool updated)
         {
+            updated = false;
             for (int i = 0; i < e.Count; i++)
             {
                 if (e[i].Position.y == Constants.ConsoleWindowHeight - 7)
@@ -75,6 +76,8 @@ namespace cSharpAdvancedTreamwork.Bodies
                     Console.WriteLine(new String(' ', 7));
                     Console.SetCursorPosition(e[i].Position.x, e[i].Position.y + 2);
                     Console.WriteLine(new String(' ', 7));
+                    missed++;
+                    updated = true;
                     e.Remove(e[i]);
                 }
                 else

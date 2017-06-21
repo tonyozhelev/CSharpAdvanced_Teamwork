@@ -108,8 +108,9 @@ namespace cSharpAdvancedTreamwork.Bodies
 
                 case ConsoleKey.Spacebar:
                     Bullets.Add(new Bullet(ship.position.x + 3, ship.position.y - 1));
-                    Console.WriteLine(Bullets.Count);
-                    DrawShip();
+
+                    Console.Beep(500,50);
+                    ship.DrawShip();
                     break;
                 default:
                     ship.DrawShip();
@@ -151,20 +152,23 @@ namespace cSharpAdvancedTreamwork.Bodies
                     Console.SetCursorPosition(e.Position.x, e.Position.y + i);
 
                     Console.WriteLine(new String(' ', 7));
+                   
                 }
+                Console.Beep();
                 EnemyShips.Remove(e);
             }
         }
 
         public void UpdateEnemies()
         {
+           
             for (int i = 0; i < EnemyShips.Count; i++)
             {
                 EnemyShips[i].DrawShip();
             }
         }
 
-        public void UpdateBullets()
+        public void UpdateBullets(ref int score)
         {
             var Removed = new List<Bullet>();
             for (int i = 0; i < Bullets.Count; i++)
@@ -182,7 +186,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                         Console.WriteLine(' ');
                         CheckForDeadEnemiesAndDelete(bul.x, bul.y);
                         UpdateEnemies();
-                        UIfunctions.UpdateScore();
+                        UIfunctions.UpdateScore(ref score);
                     }
                     else
                     {
@@ -202,7 +206,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             foreach (var bulet in Removed)
             {
                 Bullets.Remove(bulet);
-                UpdateBullets();
+                UpdateBullets(ref score);
             }
         }
 

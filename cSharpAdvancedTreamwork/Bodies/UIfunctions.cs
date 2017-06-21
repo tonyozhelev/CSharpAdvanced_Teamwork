@@ -9,7 +9,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 {
     public class UIfunctions
     {
-        public void DrawFrame(int numLives, int score)
+        public void DrawFrame(int numLives, int score, int missed)
         {
             Console.WriteLine('\u2554' + new String('\u2550', Constants.PlayBoxWidth) + '\u2557');
             for (int i = 0; i < Constants.PlayBoxHeight; i++)
@@ -19,7 +19,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
             Console.WriteLine('\u2560' + new String('\u2550', Constants.PlayBoxWidth) + '\u2563');
             Console.WriteLine('\u2551' + "       " + string.Format("Lives: " + new string('\u2665', numLives)).PadRight(16) +
-                '\u2551' + new String('#', 55) + '\u2551' + "   " + string.Format("Score: {0:d15}", score).PadRight(25) + '\u2551');
+                '\u2551' + new String('#', 40) + '\u2551' + "   " + string.Format("Missed: {0}", missed) + "   " + string.Format("Score: {0:d15}", score).PadRight(25) + '\u2551');
             Console.WriteLine('\u255A' + new String('\u2550', Constants.PlayBoxWidth) + '\u255D');
         }
 
@@ -62,19 +62,20 @@ namespace cSharpAdvancedTreamwork.Bodies
             ship.DrawShip();
         }
 
-        public static void UpdateScore()
+        public static void UpdateScore(ref int score)
         {
             //ako go naprawim long ne se sabira na finalniq ekran :D
-            if (Constants.StartingScore < int.MaxValue - 10)
+            if (score < int.MaxValue - 10)
             {
-                Constants.StartingScore += 10;
+                score += 10;
             }
             Console.SetCursorPosition(Constants.PlayBoxWidth - 24, Constants.PlayBoxHeight + 2);
-            Console.Write(string.Format("Score: {0:d15}", Constants.StartingScore));
+            Console.Write(string.Format("Score: {0:d15}", score));
         }
 
-        public static void GameOver(UIfunctions UI, MainShip ship, List<Enemies> enemies)
+        public static void GameOver(UIfunctions UI, MainShip ship, List<Enemies> enemies,int lives,int score,ref int missed)
         {
+           
             Console.Clear();
             var toBeDeleted = new List<Enemies>();
             foreach (var enemy in enemies)
@@ -86,22 +87,34 @@ namespace cSharpAdvancedTreamwork.Bodies
 
             ship.position.x = Constants.MainShipSpawnPositionX;
             ship.position.y = Constants.MainShipSpawnPositionY;
-            Console.WriteLine("You got hit!");
+            if (missed >= 3)
+            {
+                
+                Console.SetCursorPosition(40, 20);
+                Console.WriteLine($"You missed {missed} enemies!");
+                missed = Constants.MissedShips;
+            }
+            else
+            {
+                Console.SetCursorPosition(40, 20);
+                Console.WriteLine("You got hit!");
+            }
             Console.ReadKey();
             Console.Clear();
-            Constants.StartingLives--;
+            lives--;
+          
 
-            UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
+            UI.DrawFrame(lives,score,missed);
         }
 
-        public static void FinalScreen()
+        public static void FinalScreen(int score)
         {
             Console.Clear();
             Console.WriteLine("Congratulations!!!\n\nFinal Score:");
             var cursorPosX = 4;
             var cursorPosY = 15;
 
-            foreach (var ch in Constants.StartingScore.ToString())
+            foreach (var ch in score.ToString())
             {
                 switch (ch)
                 {
