@@ -39,7 +39,7 @@ namespace cSharpAdvancedTreamwork.Conts
 
         //Others
         public static int StartingScore = 0;
-        public const int StartingLives = 3;
+        public static int StartingLives = 3;
 
     }
 }

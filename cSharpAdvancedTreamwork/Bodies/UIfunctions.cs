@@ -64,9 +64,83 @@ namespace cSharpAdvancedTreamwork.Bodies
 
         public static void UpdateScore()
         {
-            Constants.StartingScore += 10;
+            //ako go naprawim long ne se sabira na finalniq ekran :D
+            if (Constants.StartingScore < int.MaxValue - 10)
+            {
+                Constants.StartingScore += 10;
+            }
             Console.SetCursorPosition(Constants.PlayBoxWidth - 24, Constants.PlayBoxHeight + 2);
             Console.Write(string.Format("Score: {0:d15}", Constants.StartingScore));
+        }
+
+        public static void GameOver(UIfunctions UI, MainShip ship, List<Enemies> enemies)
+        {
+            Console.Clear();
+            var toBeDeleted = new List<Enemies>();
+            foreach (var enemy in enemies)
+            {
+                toBeDeleted.Add(enemy);
+            }
+            ship.DeleteEnemies(toBeDeleted);
+
+
+            ship.position.x = Constants.MainShipSpawnPositionX;
+            ship.position.y = Constants.MainShipSpawnPositionY;
+            Console.WriteLine("You got hit!");
+            Console.ReadKey();
+            Console.Clear();
+            Constants.StartingLives--;
+
+            UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
+        }
+
+        public static void FinalScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("Congratulations!!!\n\nFinal Score:");
+            var cursorPosX = 4;
+            var cursorPosY = 15;
+
+            foreach (var ch in Constants.StartingScore.ToString())
+            {
+                switch (ch)
+                {
+                    case '0':
+                        AsciiNums.WriteZero(cursorPosX,cursorPosY);
+                        break;
+                    case '1':
+                        AsciiNums.WriteOne(cursorPosX, cursorPosY);
+                        break;
+                    case '2':
+                        AsciiNums.WriteTwo(cursorPosX, cursorPosY);
+                        break;
+                    case '3':
+                        AsciiNums.WriteThree(cursorPosX, cursorPosY);
+                        break;
+                    case '4':
+                        AsciiNums.WriteFour(cursorPosX, cursorPosY);
+                        break;
+                    case '5':
+                        AsciiNums.WriteFive(cursorPosX, cursorPosY);
+                        break;
+                    case '6':
+                        AsciiNums.WriteSix(cursorPosX, cursorPosY);
+                        break;
+                    case '7':
+                        AsciiNums.WriteSeven(cursorPosX, cursorPosY);
+                        break;
+                    case '8':
+                        AsciiNums.WriteEight(cursorPosX, cursorPosY);
+                        break;
+                    case '9':
+                        AsciiNums.WriteNine(cursorPosX, cursorPosY);
+                        break;
+                    default:
+                        break;
+                }
+                cursorPosX += 10;
+            }
+            
         }
     }
 }

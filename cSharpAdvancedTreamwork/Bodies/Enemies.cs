@@ -84,10 +84,24 @@ namespace cSharpAdvancedTreamwork.Bodies
                     e[i].Position.y++;
                     e[i].DrawShip();
                 }
-
-
             }
+        }
 
+        public static bool CheckForCollision(List<Enemies> e, MainShip ship)
+        {
+            foreach (var enemy in e)
+            {
+                if ((enemy.Position.x >= ship.position.x && enemy.Position.x <= ship.position.x + 6)
+                    || (enemy.Position.x + 6 >= ship.position.x && enemy.Position.x + 6 <= ship.position.x + 6))
+                {
+                    if (enemy.Position.y >= ship.position.y && enemy.Position.y <= ship.position.y + 2 ||
+                        enemy.Position.y + 2 >= ship.position.y && enemy.Position.y + 3 <= ship.position.y + 2)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

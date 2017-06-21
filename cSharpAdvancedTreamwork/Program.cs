@@ -26,10 +26,10 @@ namespace cSharpAdvancedTreamwork
             Console.ReadKey();
             Console.Clear();
             UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
-
+            
             var ship = new MainShip();
-            //Kakvo e tova po dqvolite :D
-
+            var gameOver = false;
+            
             int redo = 0;
             ship.DrawShip();
 
@@ -47,6 +47,23 @@ namespace cSharpAdvancedTreamwork
                     if ((time.Elapsed.Seconds * 1000 + time.Elapsed.Milliseconds) % 300 == 0)
                     {
                         Enemies.MoveEnemies(ship.EnemyShips);
+                        //game over check
+                        gameOver = Enemies.CheckForCollision(ship.EnemyShips, ship);
+                        if (gameOver)
+                        {
+                            if (Constants.StartingLives > 0)
+                            {
+                                UIfunctions.GameOver(UI, ship, ship.EnemyShips);
+                                ship.DrawShip();
+                                gameOver = false;
+                            }
+                            else
+                            {
+                                UIfunctions.FinalScreen();
+                                break;
+                            }
+                        }
+                        //end of game over check
                     }
 
                     ship.UpdateBullets();
@@ -65,7 +82,25 @@ namespace cSharpAdvancedTreamwork
                     }
                     KeyInfo = Console.ReadKey(true);
                     ship.MoveShip(KeyInfo, ship, ref ship.position);
+                    //game over check
+                    gameOver = Enemies.CheckForCollision(ship.EnemyShips, ship);
+                    if (gameOver)
+                    {
+                        if (Constants.StartingLives > 0)
+                        {
+                            UIfunctions.GameOver(UI, ship, ship.EnemyShips);
+                            ship.DrawShip();
+                            gameOver = false;
+                        }
+                        else
+                        {
+                            UIfunctions.FinalScreen();
+                            break;
+                        }
+                    }
+                    // end of game over check
                     continue;
+
                 }
 
 
