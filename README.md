@@ -13,16 +13,18 @@ Project TODO:
 +Create ship visual
 +Create enemy ship visual
 +Create movement
--Create enemy spawn sequence
--Create bullets
--Make stuff happen when bullets hit
--Create score counter
++Create enemy spawn sequence
++Create bullets
++Make stuff happen when bullets hit
++Create score counter
+-Create Enemy Bullets
+-Create Enemy Bullets Colision with ship
 -Create highscores table
 ```
 
 ISSUES:
 ```diff
-Когато закараш кораба най-вляво и продължиш да цъкаш ляво, въпреки че не се мърда<br/> след това трябва да цъкнеш няколко пъти надясно, че да загрее и да тръгне надясно.
+
 
 ```
 
