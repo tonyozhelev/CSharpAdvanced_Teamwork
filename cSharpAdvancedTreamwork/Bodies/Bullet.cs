@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
-   public class Bullet
-   {
-       public int x { get; set; }
-       public int y { get; set; }
-       public int speed { get; set; }
+    public class Bullet
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+        public int speed { get; set; }
 
         public Bullet(int x, int y)
         {

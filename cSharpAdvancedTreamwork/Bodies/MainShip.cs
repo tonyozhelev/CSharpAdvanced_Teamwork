@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using cSharpAdvancedTreamwork.Conts;
+using System.Timers;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
@@ -118,19 +119,12 @@ namespace cSharpAdvancedTreamwork.Bodies
 
         public void SpawnEnemiyShips()
         {
-            while (true)
+            var enemy = new Enemies();
+            if (enemy.CanBeSpawned(EnemyShips))
             {
-                var enemy = new Enemies();
-                if(enemy.CanBeSpawned(EnemyShips))
-                {
-                    EnemyShips.Add(enemy);
-                }
-                else
-                {
-                    continue;
-                }
-                Thread.Sleep(1000);
+                EnemyShips.Add(enemy);
             }
+
         }
 
         public void CheckForDeadEnemiesAndDelete(int x, int y)
@@ -140,7 +134,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             for (int i = 0; i < EnemyShips.Count; i++)
             {
                 if (x >= EnemyShips[i].Position.x && x <= EnemyShips[i].Position.x + Constants.EnemyShipWidth &&
-                    y < EnemyShips[i].Position.y + Constants.EnemyShipHeight && y > EnemyShips[i].Position.y)
+                    y < EnemyShips[i].Position.y + Constants.EnemyShipHeight && y >= EnemyShips[i].Position.y)
                 {
                     toBeDeleted.Add(EnemyShips[i]);
                 }
@@ -188,6 +182,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                         Console.WriteLine(' ');
                         CheckForDeadEnemiesAndDelete(bul.x, bul.y);
                         UpdateEnemies();
+                        UIfunctions.UpdateScore();
                     }
                     else
                     {
@@ -202,7 +197,6 @@ namespace cSharpAdvancedTreamwork.Bodies
                     Bullets.Remove(bul);
                     Console.SetCursorPosition(bul.x, bul.y);
                     Console.WriteLine(' ');
-                    Console.WriteLine(Bullets.Count);
                 }
             }
             foreach (var bulet in Removed)
@@ -221,8 +215,8 @@ namespace cSharpAdvancedTreamwork.Bodies
             }
             Coord position = new Coord
             {
-                X = (short) x,
-                Y = (short) y
+                X = (short)x,
+                Y = (short)y
             };
             StringBuilder result = new StringBuilder(1);
             uint read = 0;

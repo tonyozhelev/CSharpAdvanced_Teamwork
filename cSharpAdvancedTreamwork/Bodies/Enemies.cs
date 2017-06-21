@@ -9,7 +9,7 @@ using cSharpAdvancedTreamwork.Conts;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
-   public class Enemies
+    public class Enemies
     {
         public struct Coordinates
         {
@@ -25,9 +25,9 @@ namespace cSharpAdvancedTreamwork.Bodies
         public Enemies()
         {
             shipEnemy = Constants.EnemyShipPicture;
-            var rnd=new Random();
-            var x = rnd.Next(2, Constants.PlayBoxWidth - Constants.EnemyShipWidth-1);
-            var y =2;
+            var rnd = new Random();
+            var x = rnd.Next(2, Constants.PlayBoxWidth - Constants.EnemyShipWidth - 1);
+            var y = 2;
             Position.x = x;
             Position.y = y;
         }
@@ -40,7 +40,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
             Coordinates coordinates = this.Position;
             foreach (var line in shipEnemy)
-            { 
+            {
                 Console.SetCursorPosition(coordinates.x, coordinates.y);
                 Console.WriteLine(line);
                 coordinates.y++;
@@ -49,7 +49,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
         public bool CanBeSpawned(List<Enemies> enemies)
         {
-            
+
             for (int i = 0; i < enemies.Count; i++)
             {
                 var e = enemies[i];
@@ -59,25 +59,35 @@ namespace cSharpAdvancedTreamwork.Bodies
                 {
                     return false;
                 }
-                
+
             }
             return true;
         }
-        public static void MoveEnemies(List<Enemies>e)
+        public static void MoveEnemies(List<Enemies> e)
         {
-            while (true)
+            for (int i = 0; i < e.Count; i++)
             {
-                for (int i = 0; i < e.Count; i++)
+                if (e[i].Position.y == Constants.ConsoleWindowHeight - 7)
+                {
+                    Console.SetCursorPosition(e[i].Position.x, e[i].Position.y);
+                    Console.WriteLine(new String(' ', 7));
+                    Console.SetCursorPosition(e[i].Position.x, e[i].Position.y + 1);
+                    Console.WriteLine(new String(' ', 7));
+                    Console.SetCursorPosition(e[i].Position.x, e[i].Position.y + 2);
+                    Console.WriteLine(new String(' ', 7));
+                    e.Remove(e[i]);
+                }
+                else
                 {
                     Console.SetCursorPosition(e[i].Position.x, e[i].Position.y);
                     Console.WriteLine(new String(' ', 7));
                     e[i].Position.y++;
                     e[i].DrawShip();
                 }
-                
-                Thread.Sleep(300);
+
+
             }
-            
+
         }
     }
 }

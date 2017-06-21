@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using cSharpAdvancedTreamwork.Conts;
+using System.Diagnostics;
 
 namespace cSharpAdvancedTreamwork
 {
@@ -31,38 +32,50 @@ namespace cSharpAdvancedTreamwork
 
             int redo = 0;
             ship.DrawShip();
-            
-            Thread t=new Thread(()=>ship.SpawnEnemiyShips());
-            t.Start();
-            Thread moveEnemy = new Thread(() => Enemies.MoveEnemies(ship.EnemyShips));
-           moveEnemy.Start();
-            
+
+            Stopwatch time = new Stopwatch();
+            time.Start();
+
             do
             {
-                ConsoleKeyInfo KeyInfo;
-                while (!Console.KeyAvailable)
+                if (time.Elapsed.Milliseconds % 100 == 0)
                 {
+                    if (time.Elapsed.Seconds % 1 == 0 && time.Elapsed.Milliseconds == 0)
+                    {
+                        ship.SpawnEnemiyShips();
+                    }
+                    if ((time.Elapsed.Seconds * 1000 + time.Elapsed.Milliseconds) % 300 == 0)
+                    {
+                        Enemies.MoveEnemies(ship.EnemyShips);
+                    }
+
                     ship.UpdateBullets();
                     ship.UpdateEnemies();
-                    Thread.Sleep(50);
-                    
-
 
                 }
-                KeyInfo = Console.ReadKey(true);
-                ship.MoveShip(KeyInfo, ship, ref ship.position);
-                ship.UpdateBullets();
-                ship.UpdateEnemies();
 
-            } while (redo==0);
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo KeyInfo;
+                    while (!Console.KeyAvailable)
+                    {
+                        ship.UpdateBullets();
+                        ship.UpdateEnemies();
+                        Thread.Sleep(50);
+                    }
+                    KeyInfo = Console.ReadKey(true);
+                    ship.MoveShip(KeyInfo, ship, ref ship.position);
+                    continue;
+                }
+
+
+
+            } while (redo == 0);
 
 
             Console.ReadKey(true);
-        
-        }
-    
 
-   
-       
+        }
+
     }
 }
