@@ -10,8 +10,10 @@ using System.Timers;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
+    
     public class MainShip
     {
+        public int lives = 3;
         public struct Coordinates
         {
             public int x;

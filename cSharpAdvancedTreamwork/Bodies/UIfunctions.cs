@@ -73,7 +73,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             Console.Write(string.Format("Score: {0:d15}", score));
         }
 
-        public static void GameOver(UIfunctions UI, MainShip ship, List<Enemies> enemies,int lives,int score,ref int missed)
+        public static void GameOver(UIfunctions UI, MainShip ship, List<Enemies> enemies,int score,ref int missed)
         {
            
             Console.Clear();
@@ -101,10 +101,10 @@ namespace cSharpAdvancedTreamwork.Bodies
             }
             Console.ReadKey();
             Console.Clear();
-            lives--;
+            ship.lives--;
           
 
-            UI.DrawFrame(lives,score,missed);
+            UI.DrawFrame(ship.lives,score,missed);
         }
 
         public static void FinalScreen(int score)

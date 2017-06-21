@@ -17,3 +17,9 @@ C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork4\cSharpAdvancedTreamwork\bin
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork4\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork4\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork4\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
+C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
+C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe
+C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache

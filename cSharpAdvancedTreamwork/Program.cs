@@ -61,9 +61,9 @@ namespace cSharpAdvancedTreamwork
                         }
                         if (gameOver)
                         {
-                            if (Constants.StartingLives > 0)
+                            if (ship.lives > 0)
                             {
-                                UIfunctions.GameOver(UI, ship, ship.EnemyShips,lives,score,ref missed);
+                                UIfunctions.GameOver(UI, ship, ship.EnemyShips,score,ref missed);
                                 ship.DrawShip();
                                 gameOver = false;
                             }
@@ -102,9 +102,9 @@ namespace cSharpAdvancedTreamwork
                     gameOver = Enemies.CheckForCollision(ship.EnemyShips, ship);
                     if (gameOver)
                     {
-                        if (Constants.StartingLives > 0)
+                        if (ship.lives > 0)
                         {
-                            UIfunctions.GameOver(UI, ship, ship.EnemyShips, lives, score, ref missed);
+                            UIfunctions.GameOver(UI, ship, ship.EnemyShips, score, ref missed);
                             ship.DrawShip();
                             gameOver = false;
                         }
