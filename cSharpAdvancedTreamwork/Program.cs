@@ -8,13 +8,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using cSharpAdvancedTreamwork.Conts;
 using System.Diagnostics;
-
+using TeamworkDB.Data;
+using TeamworkDB.Models;
 namespace cSharpAdvancedTreamwork
 {
     class Program
     {
         static void Main(string[] args)
         {
+            
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Console.CursorVisible = false;
@@ -77,7 +79,7 @@ namespace cSharpAdvancedTreamwork
                     }
                     if (updateFrame)
                     {
-                        Console.SetCursorPosition(77, 48);
+                        Console.SetCursorPosition(78, 48);
                         Console.WriteLine(missed);
                     }
                     ship.UpdateEnemies();

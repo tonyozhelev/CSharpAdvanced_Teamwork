@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cSharpAdvancedTreamwork.Conts;
+using System.Threading;
+using TeamworkDB.Data;
+using TeamworkDB.Models;
 
 namespace cSharpAdvancedTreamwork.Bodies
 {
@@ -19,7 +22,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
             Console.WriteLine('\u2560' + new String('\u2550', Constants.PlayBoxWidth) + '\u2563');
             Console.WriteLine('\u2551' + "       " + string.Format("Lives: " + new string('\u2665', numLives)).PadRight(16) +
-                '\u2551' + new String('#', 40) + '\u2551' + "   " + string.Format("Missed: {0}", missed) + "   " + string.Format("Score: {0:d15}", score).PadRight(25) + '\u2551');
+                '\u2551' + new String('#', 40) + '\u2551' + "    " + string.Format("Missed: {0}", missed) + "   " + string.Format("Score: {0:d15}", score).PadRight(25) + "  " + '\u2551');
             Console.WriteLine('\u255A' + new String('\u2550', Constants.PlayBoxWidth) + '\u255D');
         }
 
@@ -58,8 +61,33 @@ namespace cSharpAdvancedTreamwork.Bodies
             Console.SetCursorPosition(43, 25);
             Console.Write("Press any key to play");
 
+            Console.SetCursorPosition(11, 32);
+            Console.WriteLine("Game Controls:");
+            Console.SetCursorPosition(11, 33);
+            Console.WriteLine("Left -> Left Arrow");
+            Console.SetCursorPosition(11, 34);
+            Console.WriteLine("Right -> Right Arrow");
+            Console.SetCursorPosition(11, 35);
+            Console.WriteLine("Up -> Up Arrow");
+            Console.SetCursorPosition(11, 36);
+            Console.WriteLine("Down -> Down Arrow");
+            Console.SetCursorPosition(11, 37);
+            Console.WriteLine("Shoot -> Spacebar");
             var ship = new MainShip();
             ship.DrawShip();
+
+            Console.SetCursorPosition(65, 32);
+            Console.WriteLine("Game Objects:");
+            Console.SetCursorPosition(65, 33);
+            Console.WriteLine("Kill enemy ships to gain points.");
+            Console.SetCursorPosition(65, 34);
+            Console.WriteLine("Each kill provides 10 points");
+            Console.SetCursorPosition(65, 35);
+            Console.WriteLine("Avoid collision with enemy ships");
+            Console.SetCursorPosition(65, 36);
+            Console.WriteLine("Do not let enemy ships take your base");
+            Console.SetCursorPosition(65, 37);
+            Console.WriteLine("If 3 ships are missed your base is captured");
         }
 
         public static void UpdateScore(ref int score)
@@ -69,7 +97,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             {
                 score += 10;
             }
-            Console.SetCursorPosition(Constants.PlayBoxWidth - 24, Constants.PlayBoxHeight + 2);
+            Console.SetCursorPosition(Constants.PlayBoxWidth - 26, Constants.PlayBoxHeight + 2);
             Console.Write(string.Format("Score: {0:d15}", score));
         }
 
@@ -99,6 +127,9 @@ namespace cSharpAdvancedTreamwork.Bodies
                 Console.SetCursorPosition(40, 20);
                 Console.WriteLine("You got hit!");
             }
+            Thread.Sleep(2000);
+            Console.SetCursorPosition(40, 22);
+            Console.Write("Press any key to continue");
             Console.ReadKey();
             Console.Clear();
             ship.lives--;
@@ -110,9 +141,12 @@ namespace cSharpAdvancedTreamwork.Bodies
         public static void FinalScreen(int score)
         {
             Console.Clear();
-            Console.WriteLine("Congratulations!!!\n\nFinal Score:");
-            var cursorPosX = 4;
-            var cursorPosY = 15;
+            Console.SetCursorPosition(40, 8);
+            Console.WriteLine("Congratulations!!!");
+            Console.SetCursorPosition(40, 10);
+            Console.WriteLine("Final Score:");
+            var cursorPosX = 42;
+            var cursorPosY = 12;
 
             foreach (var ch in score.ToString())
             {
@@ -153,7 +187,33 @@ namespace cSharpAdvancedTreamwork.Bodies
                 }
                 cursorPosX += 10;
             }
-            
+            Console.SetCursorPosition(40, 18);
+            Console.WriteLine("Enter your nickname:");
+            Console.SetCursorPosition(40, 20);
+            string name = Console.ReadLine();
+            UpdateHighScores(name, score);
+        }
+
+        private static void UpdateHighScores(string name, int score)
+        {
+            using (var context = new HighScoresContext())
+            {
+                context.HighScores.Add(new HighScores { Name = name, Score = score });
+                context.SaveChanges();
+                var counter = 1;
+                Console.SetCursorPosition(40, 22);
+                Console.WriteLine("High Scores");
+                foreach (var highScore in context.HighScores.OrderByDescending(x=>x.Score))
+                {
+                    Console.SetCursorPosition(40, 23 + counter);
+                    Console.WriteLine("{0} NickName: {1} Score: {2}",counter,highScore.Name,highScore.Score);
+                    if (counter == 10)
+                    {
+                        break;
+                    }
+                    counter++;
+                }
+            }
         }
     }
 }
