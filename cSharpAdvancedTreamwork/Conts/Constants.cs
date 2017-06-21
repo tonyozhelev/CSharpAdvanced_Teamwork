@@ -40,6 +40,7 @@ namespace cSharpAdvancedTreamwork.Conts
         //Others
         public static int StartingScore = 0;
         public static int StartingLives = 3;
+        public static int MissedShips = 0;
 
     }
 }

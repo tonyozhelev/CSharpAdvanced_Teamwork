@@ -25,7 +25,10 @@ namespace cSharpAdvancedTreamwork
             UI.DrawStartScreen();
             Console.ReadKey();
             Console.Clear();
-            UI.DrawFrame(Constants.StartingLives, Constants.StartingScore);
+            var lives = Constants.StartingLives;
+            var score = Constants.StartingScore;
+            var missed = Constants.MissedShips;
+            UI.DrawFrame(lives, score, missed);
             
             var ship = new MainShip();
             var gameOver = false;
@@ -40,43 +43,56 @@ namespace cSharpAdvancedTreamwork
             {
                 if (time.Elapsed.Milliseconds % 100 == 0)
                 {
-                    if (time.Elapsed.Seconds % 1 == 0 && time.Elapsed.Milliseconds == 0)
+                    bool updateFrame = false;
+                    if (time.Elapsed.Seconds % 2 == 0 && time.Elapsed.Milliseconds == 0)
                     {
                         ship.SpawnEnemiyShips();
                     }
-                    if ((time.Elapsed.Seconds * 1000 + time.Elapsed.Milliseconds) % 300 == 0)
+                    if ((time.Elapsed.Seconds * 1000 + time.Elapsed.Milliseconds) % 500 == 0)
                     {
-                        Enemies.MoveEnemies(ship.EnemyShips);
+                        
+                        Enemies.MoveEnemies(ship.EnemyShips,ref missed,ref updateFrame);
+                        
                         //game over check
                         gameOver = Enemies.CheckForCollision(ship.EnemyShips, ship);
+                        if (missed >= 3)
+                        {
+                            gameOver = true;
+                        }
                         if (gameOver)
                         {
                             if (Constants.StartingLives > 0)
                             {
-                                UIfunctions.GameOver(UI, ship, ship.EnemyShips);
+                                UIfunctions.GameOver(UI, ship, ship.EnemyShips,lives,score,ref missed);
                                 ship.DrawShip();
                                 gameOver = false;
                             }
                             else
                             {
-                                UIfunctions.FinalScreen();
+                                UIfunctions.FinalScreen(score);
                                 break;
                             }
                         }
                         //end of game over check
                     }
-
-                    ship.UpdateBullets();
+                    if (updateFrame)
+                    {
+                        Console.SetCursorPosition(77, 48);
+                        Console.WriteLine(missed);
+                    }
                     ship.UpdateEnemies();
 
                 }
-
+                else if(time.Elapsed.Milliseconds % 50 == 0)
+                {
+                    ship.UpdateBullets(ref score);
+                }
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo KeyInfo;
                     while (!Console.KeyAvailable)
                     {
-                        ship.UpdateBullets();
+                        //ship.UpdateBullets();
                         ship.UpdateEnemies();
                         Thread.Sleep(50);
                     }
@@ -88,13 +104,13 @@ namespace cSharpAdvancedTreamwork
                     {
                         if (Constants.StartingLives > 0)
                         {
-                            UIfunctions.GameOver(UI, ship, ship.EnemyShips);
+                            UIfunctions.GameOver(UI, ship, ship.EnemyShips, lives, score, ref missed);
                             ship.DrawShip();
                             gameOver = false;
                         }
                         else
                         {
-                            UIfunctions.FinalScreen();
+                            UIfunctions.FinalScreen(score);
                             break;
                         }
                     }
