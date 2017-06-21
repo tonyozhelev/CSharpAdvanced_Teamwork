@@ -69,13 +69,14 @@ namespace cSharpAdvancedTreamwork.Bodies
             {
                 for (int i = 0; i < e.Count; i++)
                 {
+                    Console.WriteLine();
                     Console.SetCursorPosition(e[i].Position.x, e[i].Position.y);
                     Console.WriteLine(new String(' ', 7));
                     e[i].Position.y++;
                     e[i].DrawShip();
                 }
                 
-                Thread.Sleep(300);
+                Thread.Sleep(600);
             }
             
         }

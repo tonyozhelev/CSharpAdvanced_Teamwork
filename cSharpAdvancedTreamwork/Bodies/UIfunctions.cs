@@ -9,6 +9,10 @@ namespace cSharpAdvancedTreamwork.Bodies
 {
     public class UIfunctions
     {
+        public void UpdatePlayBox()
+        {
+            
+        }
         public void DrawFrame(int numLives, int score)
         {
             Console.WriteLine('\u2554' + new String('\u2550',Constants.PlayBoxWidth) + '\u2557');
@@ -57,9 +61,14 @@ namespace cSharpAdvancedTreamwork.Bodies
 
             Console.SetCursorPosition(43, 25);
             Console.Write("Press any key to play");
-
-            var ship = new MainShip();
-            ship.DrawShip();
+            var StartScreenShip = Constants.ShipPicture;
+            var y = Constants.MainShipSpawnPositionY;
+            foreach (var line in StartScreenShip)
+            {
+                Console.SetCursorPosition(Constants.MainShipSpawnPositionX, y);
+                Console.WriteLine("{0}", line);
+                y++;
+            }
         }
     }
 }

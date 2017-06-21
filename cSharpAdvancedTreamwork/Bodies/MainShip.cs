@@ -34,34 +34,40 @@ namespace cSharpAdvancedTreamwork.Bodies
         public List<Enemies> EnemyShips { get; set; }
 
         public string[] PlayerShip { get; set; }
-
+        //TODO fix spawn to be for playbox 
         public Coordinates position =
             new Coordinates(Constants.MainShipSpawnPositionX, Constants.MainShipSpawnPositionY);
 
-        public void DrawShip()
+        public void DrawShip(ref PlayBox p)
         {
-            Coordinates coords = new Coordinates(this.position.x, this.position.y);
+            var playBox = p.PlayBoxMatrix;
+            Coordinates coords = new Coordinates(this.position.x-1, this.position.y-1);
 
-            foreach (var line in PlayerShip)
+            for (int i = 0; i < PlayerShip.Length; i++)
             {
-                Console.SetCursorPosition(coords.x, coords.y);
-                Console.WriteLine("{0}", line);
-                coords.y++;
+                for (int j = 0; j < PlayerShip[i].Length; j++)
+                {
+                    playBox[coords.y + i, coords.x + j] = PlayerShip[i][j];
+                }
             }
+            
         }
 
         public void DeleteShip()
         {
             Coordinates coords = new Coordinates(this.position.x, this.position.y);
-            for (int i = 0; i < Constants.MainShipHeight; i++)
+            lock (this)
             {
-                Console.SetCursorPosition(coords.x, coords.y);
-                Console.WriteLine(new string(' ', Constants.MainShipWidth));
-                coords.y++;
+                for (int i = 0; i < Constants.MainShipHeight; i++)
+                {
+                    Console.SetCursorPosition(coords.x, coords.y);
+                    Console.WriteLine(new string(' ', Constants.MainShipWidth));
+                    coords.y++;
+                }
             }
         }
 
-        public void MoveShip(ConsoleKeyInfo KeyInfo, MainShip ship, ref Coordinates coords)
+        public void MoveShip(ConsoleKeyInfo KeyInfo, MainShip ship, ref Coordinates coords, ref PlayBox p)
         {
             var UI = new UIfunctions();
             DeleteShip();
@@ -74,7 +80,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                             coords.x += Constants.MainShipSpeedX;
                         coords.x++;
                     }
-                    ship.DrawShip();
+                    ship.DrawShip(ref p);
                     break;
                 case ConsoleKey.LeftArrow:
                     if (coords.x - 1 > Constants.FrameWidth)
@@ -83,7 +89,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                             coords.x -= Constants.MainShipSpeedX;
                         coords.x--;
                     }
-                    ship.DrawShip();
+                    ship.DrawShip(ref p);
                     break;
                 case ConsoleKey.UpArrow:
                     if (coords.y - 1 > Constants.FrameWidth)
@@ -92,7 +98,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                             coords.y -= Constants.MainShipSpeedY;
                         coords.y--;
                     }
-                    ship.DrawShip();
+                    ship.DrawShip(ref p);
 
                     break;
                 case ConsoleKey.DownArrow:
@@ -102,16 +108,16 @@ namespace cSharpAdvancedTreamwork.Bodies
                             coords.y += Constants.MainShipSpeedY;
                         coords.y++;
                     }
-                    ship.DrawShip();
+                    ship.DrawShip(ref p);
                     break;
 
                 case ConsoleKey.Spacebar:
                     Bullets.Add(new Bullet(ship.position.x + 3, ship.position.y - 1));
                     Console.WriteLine(Bullets.Count);
-                    DrawShip();
+                    ship.DrawShip(ref p);
                     break;
                 default:
-                    ship.DrawShip();
+                    ship.DrawShip(ref p);
                     break;
             }
         }
@@ -121,7 +127,7 @@ namespace cSharpAdvancedTreamwork.Bodies
             while (true)
             {
                 var enemy = new Enemies();
-                if(enemy.CanBeSpawned(EnemyShips))
+                if (enemy.CanBeSpawned(EnemyShips))
                 {
                     EnemyShips.Add(enemy);
                 }
@@ -129,7 +135,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                 {
                     continue;
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
         }
 
@@ -145,7 +151,10 @@ namespace cSharpAdvancedTreamwork.Bodies
                     toBeDeleted.Add(EnemyShips[i]);
                 }
             }
-            DeleteEnemies(toBeDeleted);
+            lock (this)
+            {
+                DeleteEnemies(toBeDeleted);
+            }
         }
 
         public void DeleteEnemies(List<Enemies> deleted)
