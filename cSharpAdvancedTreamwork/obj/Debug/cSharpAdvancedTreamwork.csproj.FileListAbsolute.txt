@@ -29,3 +29,9 @@ C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.exe
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.pdb
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.dll
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.exe
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.pdb
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.xml
+D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.SqlServer.xml

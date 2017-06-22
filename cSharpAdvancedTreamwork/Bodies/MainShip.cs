@@ -67,10 +67,11 @@ namespace cSharpAdvancedTreamwork.Bodies
         public void MoveShip(ConsoleKeyInfo KeyInfo, MainShip ship, ref Coordinates coords)
         {
             var UI = new UIfunctions();
-            DeleteShip();
+           
             switch (KeyInfo.Key)
             {
                 case ConsoleKey.RightArrow:
+                    DeleteShip();
                     if (coords.x < Constants.PlayBoxWidth - Constants.MainShipWidth)
                     {
                         if (coords.x + Constants.MainShipSpeedX <= Constants.PlayBoxWidth - Constants.MainShipWidth)
@@ -80,6 +81,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                     ship.DrawShip();
                     break;
                 case ConsoleKey.LeftArrow:
+                    DeleteShip();
                     if (coords.x - 1 > Constants.FrameWidth)
                     {
                         if (coords.x - Constants.MainShipSpeedX > Constants.FrameWidth)
@@ -89,6 +91,7 @@ namespace cSharpAdvancedTreamwork.Bodies
                     ship.DrawShip();
                     break;
                 case ConsoleKey.UpArrow:
+                    DeleteShip();
                     if (coords.y - 1 > Constants.FrameWidth)
                     {
                         if (coords.y - Constants.MainShipSpeedY > Constants.FrameWidth)
@@ -99,6 +102,7 @@ namespace cSharpAdvancedTreamwork.Bodies
 
                     break;
                 case ConsoleKey.DownArrow:
+                    DeleteShip();
                     if (coords.y < Constants.PlayBoxHeight - Constants.MainShipHeight)
                     {
                         if (coords.y + Constants.MainShipSpeedY <= Constants.PlayBoxHeight - Constants.MainShipHeight)
