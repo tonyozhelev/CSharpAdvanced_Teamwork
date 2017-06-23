@@ -35,3 +35,15 @@ D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.e
 D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.pdb
 D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.xml
 D:\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe.config
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.exe
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.exe
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\cSharpAdvancedTreamwork.pdb
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.dll
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.exe
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\TeamworkDB.pdb
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.xml
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\cSharpAdvancedTreamwork\obj\Debug\cSharpAdvancedTreamwork.csprojResolveAssemblyReference.cache

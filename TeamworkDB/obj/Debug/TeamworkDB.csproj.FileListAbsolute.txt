@@ -7,3 +7,13 @@ C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\TeamworkDB\bin\Debug\Entity
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\TeamworkDB\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\TeamworkDB\obj\Debug\TeamworkDB.exe
 C:\Users\Tonyo\Source\Repos\CSharpAdvanced_Teamwork5\TeamworkDB\obj\Debug\TeamworkDB.pdb
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\TeamworkDB.exe.config
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\TeamworkDB.exe
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\TeamworkDB.pdb
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\EntityFramework.dll
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\EntityFramework.xml
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\obj\Debug\TeamworkDB.csprojResolveAssemblyReference.cache
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\obj\Debug\TeamworkDB.exe
+C:\Users\Tonyo\Documents\GitHub\CSharpAdvanced_Teamwork\TeamworkDB\obj\Debug\TeamworkDB.pdb
